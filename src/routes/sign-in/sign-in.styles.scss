@@ -1,0 +1,10 @@
+.sign-in-container{
+    width: 50%;
+    margin: 0 auto;
+
+    .button-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

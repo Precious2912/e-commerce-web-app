@@ -55,7 +55,7 @@ const SignUp = () => {
   };
   return (
     <div className="sign-up-container">
-      <h2>Signup with your email and password</h2>
+      <h2>Create an account</h2>
       <form
         onSubmit={(event) => {
           handleSubmit(event);
@@ -104,11 +104,11 @@ const SignUp = () => {
             onChange: handleChange,
           }}
         />
+        <p>
+          Already have an account? <Link to="/sign-in">Sign In</Link>
+        </p>
 
         <Button type="submit">Sign Up</Button>
-        <p>
-          Already registered? <Link to="/sign-in">Sign In</Link>
-        </p>
       </form>
     </div>
   );
