@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { getRedirectResult } from "firebase/auth";
 import {
@@ -9,6 +9,7 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
 import Button from "../../components/button/button.component";
+import { UserContext } from "../../contexts/user.context";
 import "./sign-in.styles.scss";
 
 const initialFormState = {
@@ -35,6 +36,8 @@ const SignIn = () => {
   const [formFields, setFormFields] = useState(initialFormState);
   const { email, password } = formFields;
 
+  const { setCurentUser } = useContext(UserContext)
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
@@ -47,7 +50,8 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      const response = await signInAuthUserWithEmailAndPassword(email, password);
+      setCurentUser(response)
       resetForm();
     } catch (error) {
       if(error.code === 'auth/wrong-password'){
