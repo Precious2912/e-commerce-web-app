@@ -7,7 +7,7 @@ import {
   createUserDocFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
-const Login = () => {
+const SignIn = () => {
 
   useEffect(() => {
     const fetchData = async() => {
@@ -35,4 +35,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;
