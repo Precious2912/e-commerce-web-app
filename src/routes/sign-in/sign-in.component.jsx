@@ -30,6 +30,7 @@ const SignIn = () => {
 
   const signInWithGoogle = async () => {
     const { user } = await loginWithGoogleRedirect();
+    setCurentUser(user)
     await createUserDocFromAuth(user);
   };
 

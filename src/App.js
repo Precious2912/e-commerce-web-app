@@ -3,14 +3,7 @@ import Home from "./routes/home/home.component";
 import SignUp from './routes/sign-up/sign-up.component';
 import SignIn from './routes/sign-in/sign-in.component';
 import Navigation from './routes/navbar/navbar.component';
-
-const Shop = () => {
-  return (
-    <div>
-      <h3>Shop Page</h3>
-    </div>
-  )
-}
+import Shop from './routes/shop/shop.component';
 
 const App = () => {
   return (
