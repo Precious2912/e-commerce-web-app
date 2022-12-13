@@ -8,7 +8,7 @@ import {
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
-import Button from "../../components/button/button.component";
+import Button, {BUTTON_TYPE_CLASSES} from "../../components/button/button.component";
 import { UserContext } from "../../contexts/user.context";
 import "./sign-in.styles.scss";
 
@@ -97,7 +97,7 @@ const SignIn = () => {
         </p>
         <div className="button-wrapper">
           <Button type="submit">Sign In </Button>
-          <Button buttonType="google" type="button" onClick={signInWithGoogle}>
+          <Button buttonType={BUTTON_TYPE_CLASSES.google} type="button" onClick={signInWithGoogle}>
             Signin With Google
           </Button>
         </div>

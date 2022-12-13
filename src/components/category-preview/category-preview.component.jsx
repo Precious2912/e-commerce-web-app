@@ -5,11 +5,9 @@ import "./category-preview.styles.scss";
 const CategoryPreview = ({ title, products }) => {
   return (
     <div className="category-preview-container">
-      <h2>
-        <Link to={title} className="title">
-          {title.toUpperCase()}
-        </Link>
-      </h2>
+      <Link to={title} className="title">
+        <h2>{title.toUpperCase()}</h2>
+      </Link>
       <div className="preview">
         {products
           .filter((_, index) => index < 4)
