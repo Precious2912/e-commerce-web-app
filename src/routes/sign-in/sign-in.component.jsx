@@ -10,7 +10,7 @@ import {
 import FormInput from "../../components/form-input/form-input.component";
 import Button, {BUTTON_TYPE_CLASSES} from "../../components/button/button.component";
 import { UserContext } from "../../contexts/user.context";
-import "./sign-in.styles.scss";
+import { ButtonWrapper, SignInContainer } from "./sign-in.styles";
 
 const initialFormState = {
   email: "",
@@ -64,7 +64,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>Sign in with email and password</h2>
       <form
         onSubmit={(event) => {
@@ -95,14 +95,18 @@ const SignIn = () => {
         <p>
           Don't have an account? <Link to="/sign-up">Sign Up</Link>
         </p>
-        <div className="button-wrapper">
+        <ButtonWrapper>
           <Button type="submit">Sign In </Button>
-          <Button buttonType={BUTTON_TYPE_CLASSES.google} type="button" onClick={signInWithGoogle}>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            onClick={signInWithGoogle}
+          >
             Signin With Google
           </Button>
-        </div>
+        </ButtonWrapper>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 
