@@ -32,13 +32,15 @@ const removeCartItem = (cartItems, itemToRemove) => {
 };
 
 const clearCartItem = (cartItems, itemToClear) => {
-      return cartItems.filter((cartItem) => cartItem.id !== itemToClear.id);
-}
+  return cartItems.filter((cartItem) => cartItem.id !== itemToClear.id);
+};
 
 export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => null,
-  cartItems: [],
+  cartItems: localStorage.getItem("cart-items")
+    ? JSON.parse(localStorage.getItem("cart-items"))
+    : [],
   addItemToCart: () => {},
   cartCount: 0,
   removeItemFromCart: () => {},
@@ -50,7 +52,7 @@ export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
-   const [cartTotal, setCartTotal] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
@@ -60,25 +62,28 @@ export const CartProvider = ({ children }) => {
     setCartCount(newCartCount);
   }, [cartItems]);
 
-    useEffect(() => {
-      const newCartTotal = cartItems.reduce(
-        (total, cartItem) => total + cartItem.quantity * cartItem.price,
-        0
-      );
-      setCartTotal(newCartTotal);
-    }, [cartItems]);
+  useEffect(() => {
+    const newCartTotal = cartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity * cartItem.price,
+      0
+    );
+    setCartTotal(newCartTotal);
+  }, [cartItems]);
 
   const addItemToCart = (item) => {
     setCartItems(addCartItem(cartItems, item));
+    localStorage.setItem("cart-items", JSON.stringify(cartItems));
   };
 
   const removeItemFromCart = (item) => {
     setCartItems(removeCartItem(cartItems, item));
+    localStorage.setItem("cart-items", JSON.stringify(cartItems));
   };
 
   const clearItemFromCart = (item) => {
-    setCartItems(clearCartItem(cartItems, item))
-  }
+    setCartItems(clearCartItem(cartItems, item));
+    localStorage.setItem("cart-items", JSON.stringify(cartItems));
+  };
 
   const value = {
     isCartOpen,
